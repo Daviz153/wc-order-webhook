@@ -25,7 +25,7 @@ WooCommerce 결제 완료 시 **상품별로 지정한 URL**로 웹훅을 자동
 
 ## 설치
 
-1. [Releases](https://github.com/Daviz153/wc-order-webhook/releases/latest)에서 최신 zip 다운로드
+1. [Releases](https://github.com/Daviz153-wpPlugins/wc-order-webhook/releases/latest)에서 최신 zip 다운로드
 2. WordPress 관리자 → 플러그인 → 새로 추가 → 플러그인 업로드
 3. 활성화
 

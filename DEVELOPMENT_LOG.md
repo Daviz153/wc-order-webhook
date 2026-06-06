@@ -5,7 +5,7 @@
 WooCommerce 결제 완료 시 **상품별로 지정한 URL**로 웹훅을 발송하는 WordPress 플러그인.
 Flowmattic(유료) 대체 목적. 상품마다 Make.com 시나리오가 달라 상품 단위 URL이 필수.
 
-- **GitHub:** https://github.com/Daviz153/wc-order-webhook
+- **GitHub:** https://github.com/Daviz153-wpPlugins/wc-order-webhook
 - **현재 버전:** 1.0.0
 - **개발 환경:** Docker WordPress (localhost:8080), PHP 8.2
 
@@ -131,11 +131,11 @@ docker compose up -d
 
 # WordPress 관리자
 http://localhost:8080/wp-admin
-ID: <admin-email>
+# ID: wp-config.php 참고
 
 # GitHub 저장소 클론 (로컬 비어있을 때)
 cd <wp-plugin-path>/wc-order-webhook
-git clone https://github.com/Daviz153/wc-order-webhook.git .
+git clone https://github.com/Daviz153-wpPlugins/wc-order-webhook.git .
 ```
 
 ---
