@@ -19,6 +19,35 @@ class WCMW_Admin {
 		add_filter( 'woocommerce_product_data_tabs', array( $this, 'add_product_tab' ) );
 		add_action( 'woocommerce_product_data_panels', array( $this, 'render_product_panel' ) );
 		add_action( 'woocommerce_process_product_meta', array( $this, 'save_product_meta' ) );
+
+		// 플러그인 목록에 "업데이트 확인" 링크 추가
+		add_filter( 'plugin_action_links_wc-order-webhook/wc-order-webhook.php', array( $this, 'add_action_links' ) );
+		add_action( 'admin_init', array( $this, 'handle_check_update' ) );
+	}
+
+	public function add_action_links( array $links ): array {
+		$check_url = wp_nonce_url(
+			add_query_arg( 'wcmw_check_update', '1', admin_url( 'plugins.php' ) ),
+			'wcmw_check_update'
+		);
+		array_unshift( $links, '<a href="' . esc_url( $check_url ) . '">업데이트 확인</a>' );
+		return $links;
+	}
+
+	public function handle_check_update(): void {
+		if (
+			! isset( $_GET['wcmw_check_update'] ) ||
+			! check_admin_referer( 'wcmw_check_update' ) ||
+			! current_user_can( 'update_plugins' )
+		) {
+			return;
+		}
+
+		delete_transient( 'wcow_github_release' );
+		delete_site_transient( 'update_plugins' );
+
+		wp_safe_redirect( admin_url( 'plugins.php' ) );
+		exit;
 	}
 
 	public function add_menu(): void {
